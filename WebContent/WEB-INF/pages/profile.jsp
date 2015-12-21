@@ -3,6 +3,26 @@
 <html>
 <head>
 <title>User profile</title>
+
+<style>
+label.error {
+	font-weight: bold;
+	color: red;
+	padding: 2px 8px;
+	margin-top: 2px;
+}
+
+.error {
+	padding: 15px;
+	margin-bottom: 20px;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	color: #a94442;
+	background-color: #f2dede;
+	border-color: #ebccd1;
+}
+</style>
+
 <!-- user validation -->
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/app/resources/js/validate/user.validation.js"></script>
@@ -15,7 +35,7 @@
 	<div class="panel panel-default" style="width: 270px; margin-left: 40px;">
 		<!-- Default panel contents -->
 		<div class="panel-heading">Profile</div>
-		<form id="login-form" action="${pageContext.request.contextPath}/app/profile.html" method="POST">
+		<form action="${pageContext.request.contextPath}/app/profile.html" method="POST" id="login-form">
 			<!-- Table -->
 			<table class="table">
 				<tr>

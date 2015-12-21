@@ -21,7 +21,7 @@
 		<intercept-url pattern="/app/profile.html**" access="hasRole('ROLE_USER')" />
 		<intercept-url pattern="/app/messages.html**" access="hasRole('ROLE_USER')" />
 		<intercept-url pattern="/app/comment.html**" access="hasRole('ROLE_USER')" />
-		<intercept-url pattern="/app/ajaxtest.html**" access="hasRole('ROLE_USER')" />
+		
 
 		<form-login login-page="/app/login.html" 
 		    default-target-url="/app/index.html"

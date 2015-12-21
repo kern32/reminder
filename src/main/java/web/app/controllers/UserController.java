@@ -41,13 +41,22 @@ public class UserController {
 	@Autowired
 	private UserRoleService userRoleService;
 
-	@RequestMapping(value = "/ajaxtest.html**", method = RequestMethod.GET)
-	public @ResponseBody String processAJAXRequest(
+	@RequestMapping(value = "/username/validation.html**", method = RequestMethod.GET)
+	public @ResponseBody String processAJAXUsernameValidation(
 			@RequestParam String text) {
-			String response = "exists";
+			String existing_user= "user exists";
 			// Process the request
 			// Prepare the response string
-			return response;
+			return existing_user;
+		}
+	
+	@RequestMapping(value = "/email/validation.html**", method = RequestMethod.GET)
+	public @ResponseBody String processAJAXEmailValidation(
+			@RequestParam String text) {
+			String existing_email = "email exists";
+			// Process the request
+			// Prepare the response string
+			return existing_email;
 		}
 	
 	@RequestMapping({ "/index.html", "/", "" })
