@@ -1,13 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@page session="true"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <title>Authorization</title>
-<!-- login form -->
-<link rel="stylesheet" media="screen" href="${pageContext.request.contextPath}/app/resources/css/bootstrap.css">
-<link rel="stylesheet" media="screen" href="${pageContext.request.contextPath}/app/resources/css/custom.css">
+<!-- main design -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/app/resources/css/bootstrap.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/app/resources/css/custom.css">
+<!-- grey background-->
+<style>
+html,body {
+	background-color: #eee;
+	padding-top: 20px;
+}
+input{
+	margin-bottom: 8px;
+}
+</style>
 </head>
 <body onload='document.loginForm.username.focus();'>
 	<div class="container">
@@ -22,10 +31,10 @@
 			<form action="${pageContext.request.contextPath}/app/auth/login_check?targetUrl=${targetUrl}" method="POST" id="login-form">
 				<div class="control-group">
 					<div class="controls">
-						<input type="text" class="form-control" placeholder="Username" name="username" style="margin-bottom: 5px" value="user" />
+						<input type="text" class="form-control" placeholder="Username" name="username"  value="user" />
 					</div>
 					<div class="controls">
-						<input type="password" class="form-control" placeholder="Password" name="password" style="margin-bottom: 5px" value="123456" />
+						<input type="password" class="form-control" placeholder="Password" name="password" value="123456" />
 					</div>
 				</div>
 				<div class="form-group">

@@ -4,40 +4,40 @@
 <%@taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page session="true"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" media="screen" href="${pageContext.request.contextPath}/app/resources/css/bootstrap.css">
+<!-- main design -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/app/resources/css/bootstrap.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/app/resources/css/custom.css">
+<!-- user validation -->
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/app/resources/js/validate/user.validation.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/app/resources/js/validate/jquery.validate.min.js"></script>
+<!-- mask -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/app/resources/js/jquery.maskedinput.js"></script>
 </head>
 <body>
-	<nav class="navbar navbar-default" role="navigation">
+	<nav class="navbar navbar-default" data-role="navigation">
 	<div class="navbar-header">
 		<a href="./index.html"><img alt="image" src="${pageContext.request.contextPath}/app/resources/img/reminder-card.png" /></a>
 	</div>
 
 	<!-- Collect the nav links, forms, and other content for toggling -->
 	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-		<ul class="nav navbar-nav">
+		<ul class="nav navbar-nav" style="font-size: 1.3em; margin-top: 15px; margin-left: 40px;">
 			<li><a href="./index.html"><span class="badge pull-right"></span>
-					<h4>Home</h4></a></li>
+					Home</a></li>
 			<li><a href="./profile.html"><span class="badge pull-right"></span>
-					<h4>Profile</h4></a></li>
+					Profile</a></li>
 			<li><a href="./messages.html"><span class="badge pull-right">${count}</span>
-					<h4>Reminders</h4></a></li>
+					Reminders</a></li>
 			<li><a href="./contact.html"><span class="badge pull-right"></span>
-					<h4>Contact</h4></a></li>
+					Contact</a></li>
 		</ul>
-		<form class="navbar-form navbar-left">
-			<div class="form-group">
-				<h4>
-					<input type="text" class="form-control" placeholder="Search" />
-				</h4>
-			</div>
-			<button type="submit" class="btn btn-primary">Submit</button>
-		</form>
 		<ul class="nav navbar-nav navbar-right">
 			<li><c:if test="${pageContext.request.userPrincipal.name != null}">
-					<a href="javascript:formSubmit()"><h4>Logout (${pageContext.request.userPrincipal.name})</h4></a>
+					<a href="javascript:formSubmit()">Logout (${pageContext.request.userPrincipal.name})</a>
 				</c:if>
 			</li>
 		</ul>

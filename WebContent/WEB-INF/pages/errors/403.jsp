@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>403 Forbidden</title>
+<title>HTTP 403 Forbidden</title>
 <!-- show counter -->			
 <script>
 <%
@@ -96,20 +96,19 @@ function timer() {
 	<!-- redirect to default page -->
 	<script>
 		var targetURL = "${pageContext.request.contextPath}/app/index.html";
-		var countdownfrom = 5
-		var currentsecond = document.redirect.redirect2.value = countdownfrom + 1
+		var countdownfrom = 5;
+		var currentsecond = document.redirect.redirect2.value = countdownfrom + 1;
 		function countredirect() {
 			if (currentsecond != 1) {
-				currentsecond -= 1
-				document.redirect.redirect2.value = currentsecond
+				currentsecond -= 1;
+				document.redirect.redirect2.value = currentsecond;
 			} else {
-				window.location = targetURL
+				window.location = targetURL;
 				return
-
 			}
-			setTimeout("countredirect()", 1000)
+			setTimeout("countredirect()", 1000);
 		}
-		countredirect()
+		countredirect();
 	</script>
 </body>
 </html>

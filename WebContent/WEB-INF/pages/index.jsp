@@ -5,8 +5,7 @@
 <title>Don't forget service</title>
 </head>
 <body>
-	<div class="pull-right"
-		style="padding-right: 400px; padding-top: 35px;">
+	<div class="pull-left" style="padding-left: 25px; ">
 		It's happened to all of us. You're in the middle of a task when a
 		thought in the back of your mind begins to nag at you. <br /> You
 		were supposed to take care of something important but you just can't
