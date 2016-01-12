@@ -10,6 +10,16 @@
 	<build>
 		<finalName>reminder</finalName>
 		<plugins>
+		<!-- compiler version -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.3</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
 			<!-- deploy war to Tomcat -->
 			<plugin>
 				<groupId>org.apache.tomcat.maven</groupId>
@@ -149,8 +159,6 @@
 			<artifactId>spring-security-config</artifactId>
 			<version>3.2.3.RELEASE</version>
 		</dependency>
-
-
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-core</artifactId>
@@ -171,7 +179,11 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
-
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.4</version>
+		</dependency>
 	</dependencies>
 	<properties>
 		<ftp.host>185.65.246.6</ftp.host>
