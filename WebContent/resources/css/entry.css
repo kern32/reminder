@@ -1,0 +1,15 @@
+html,body {
+	background-color: #eee;
+	padding-top: 20px;
+}
+input{
+	margin-bottom: 8px;
+}
+
+a {
+    margin-top: 15px;
+}
+
+h2 {
+	text-align: center;
+}
