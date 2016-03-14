@@ -1,5 +1,9 @@
 package web.app.sender;
 
+import web.app.entities.Reminder;
+
 public abstract class Sender {
-	abstract boolean remind(String name,String receiver,String  message);
+	
+	abstract boolean send(Reminder entity);
+	
 }
