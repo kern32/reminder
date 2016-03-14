@@ -13,50 +13,51 @@ import org.apache.log4j.Logger;
 @Entity
 @Table(name = "roles")
 public class Role implements Serializable {
-
 	private static final long serialVersionUID = 1L;
-	private static final Logger LOG = Logger.getLogger(Users.class);
+	private static Logger log = Logger.getLogger("file");
+	
 	@Id
 	@GeneratedValue
-	@Column(name = "id")
+	@Column(name = "id", length = 50)
 	private Integer id;
 
-	@Column(name = "role")
+	@Column(name = "role", length = 20, nullable = false)
 	private String role;
 
 	public Role() {
-		LOG.info("default constr Role");
+		super();
+		log.info("Role entity: default constr");
 	}
 
-	public Role(Integer id) {
-		LOG.info("overloaded constr Role 1 params");
-		this.id = id;
-	}
-	
 	public Role(Integer id, String role) {
-		LOG.info("overloaded constr Role 2 params");
+		log.info("Role entity: constr with params");
 		this.id = id;
 		this.role = role;
 	}
 
 	public Integer getId() {
+		log.info("Role entity: get id");
 		return id;
 	}
 
 	public void setId(Integer id) {
+		log.info("Role entity: set id");
 		this.id = id;
 	}
 
 	public String getRole() {
+		log.info("Role entity: get role name");
 		return role;
 	}
 
 	public void setRole(String role) {
+		log.info("Role entity: set role name");
 		this.role = role;
 	}
 
 	@Override
 	public int hashCode() {
+		log.info("Role entity: invoke hashcode");
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
@@ -66,6 +67,7 @@ public class Role implements Serializable {
 
 	@Override
 	public boolean equals(Object obj) {
+		log.info("Role entity: invoke equals");
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -88,8 +90,7 @@ public class Role implements Serializable {
 
 	@Override
 	public String toString() {
-		return "RoleEntity [id=" + id + ", role=" + role + "]";
+		log.info("Role entity: invoke toString");
+		return "Role [id=" + id + ", role=" + role + "]";
 	}
-	
-	
 }
