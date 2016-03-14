@@ -5,46 +5,38 @@
 <head>
 <title>Authorization</title>
 <!-- main design -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/app/resources/css/bootstrap.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/app/resources/css/custom.css">
-<!-- grey background-->
-<style>
-html,body {
-	background-color: #eee;
-	padding-top: 20px;
-}
-input{
-	margin-bottom: 8px;
-}
-</style>
+<link rel="icon" href="./resources/img/favicon.ico" type="image/x-icon"/>
+<link rel="stylesheet" href="./resources/css/bootstrap.css">
+<link rel="stylesheet" href="./resources/css/user-form.css">
+<link rel="stylesheet" href="./resources/css/entry.css">
+<!-- submit on entry button -->
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+	$(document).keypress(function(event) {
+    if (event.which == 13) {
+        event.preventDefault();
+        $("form").submit();
+    }
+});
+</script>
 </head>
-<body onload='document.loginForm.username.focus();'>
-	<div class="container">
-		<div class="login-form">
-			<h2>Log in</h2>
-			<c:if test="${not empty error}">
-				<div class="error">${error}</div>
-			</c:if>
-			<c:if test="${not empty msg}">
-				<div class="msg">${msg}</div>
-			</c:if>
-			<form action="${pageContext.request.contextPath}/app/auth/login_check?targetUrl=${targetUrl}" method="POST" id="login-form">
-				<div class="control-group">
-					<div class="controls">
-						<input type="text" class="form-control" placeholder="Username" name="username"  value="user" />
-					</div>
-					<div class="controls">
-						<input type="password" class="form-control" placeholder="Password" name="password" value="123456" />
-					</div>
-				</div>
-				<div class="form-group">
-					<button type="submit" class="btn btn-primary btn-block">Login</button>
-				</div>
-				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-			</form>
-			<div class="col-xs-6 col-md-4">
-				<a class="btn btn-link small" href="./registration.html">Register new Account</a>
-			</div>
+<body onload='document.loginform.username.focus();'>
+	<div class="login-form">
+		<h2>Log in</h2>
+		<c:if test="${not empty error}">
+			<div class="error">${error}</div>
+		</c:if>
+		<c:if test="${not empty msg}">
+			<div class="msg">${msg}</div>
+		</c:if>
+		<form action="./auth/login_check?targetUrl=${targetUrl}" method="POST" name="loginform" >
+			<input type="text" class="form-control" placeholder="Username" name="username"  value="user"/>
+			<input type="password" class="form-control" placeholder="Password" name="password"  value="111111"/>
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+			<button type="submit" class="btn btn-primary btn-block">Login</button>
+		</form>
+		<div class="col-xs-6 col-md-4">
+			<a class="btn btn-link small" href="./registration.html">Register new Account</a>
 		</div>
 	</div>
 </body>

@@ -20,9 +20,9 @@ function timer() {
 }
 </script>
 <!-- redirect to default page -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/app/resources/js/counter.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/counter.js"></script>
 <!-- write a progress bar -->
-<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/app/resources/css/rotate-circle.css">
+<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/rotate-circle.css">
 </head>
 <body>
 	<center>
@@ -62,7 +62,7 @@ function timer() {
 	</div>
 
 	<!-- write a progress bar -->
-	<script src="${pageContext.request.contextPath}/app/resources/js/rotate-circle.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/rotate-circle.js"></script>
 	<script>
 	$(function(){
 		var current_effect = 'bounce';
@@ -95,7 +95,7 @@ function timer() {
 
 	<!-- redirect to default page -->
 	<script>
-		var targetURL = "${pageContext.request.contextPath}/app/index.html";
+		var targetURL = "${pageContext.request.contextPath}/index.html";
 		var countdownfrom = 5;
 		var currentsecond = document.redirect.redirect2.value = countdownfrom + 1;
 		function countredirect() {

@@ -1,78 +1,67 @@
 <%@include file="header.jsp"%>
-<!DOCTYPE html">
+<!DOCTYPE html>
 <html>
 <head>
 <title>Reminders</title>
+<!-- date time picker -->
+<link rel="stylesheet" media="screen" href="./resources/css/bootstrap-datetimepicker.css" />		
 <!-- time  -->
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script type="text/javascript" src="./resources/js/bootstrap-datetimepicker.min.js"></script>
 <!-- combo box selection -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/app/resources/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/app/resources/js/bootstrap-select.js"></script>
-<link rel="stylesheet" media="screen" href="${pageContext.request.contextPath}/app/resources/css/bootstrap-select.css" />
+<script type="text/javascript" src="./resources/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./resources/js/bootstrap-select.js"></script>
+<link rel="stylesheet" media="screen" href="./resources/css/bootstrap-select.css" />
+<!-- confirmation dialog -->
+<link href="./resources/css/bootstrap.min.css" rel="stylesheet">
+<script src="./resources/js/jquery.confirm.js"></script>
+<script src="./resources/js/reminder-form.js"></script>
 </head>
-<body onload="setReceiver()">
-	<form id="login-form" action="${pageContext.request.contextPath}/reminder/save.html" method="POST">
-		<div class="pull-left" style="margin-left: 40px; width: 18%;">
-			<textarea id="reminderText" name="reminderText" class="form-control" rows="10" placeholder="Message"></textarea>
+<body  onload="setReceiver()">
+<table class="table reminders" id="listTable" /></table>
+	<form id="login-form" >
+		<div class="pull-left reminder">
+			<textarea id="reminder" name="reminder" class="form-control" rows="16" placeholder="Message" ></textarea>
 		</div>
-		<div class="pull-left" style="margin-left: 20px; width: 15%;">
-			<input type="text" id="reminderName" name="reminderName" class="form-control" placeholder="Subject"> <br /> 
-			<input type="text" id="reminderDate" name="reminderDate" class="form-control" placeholder="Date"><br /> 
-			<select class="selectpicker" id="reminderType" name="reminderType" onchange="setReceiver(this)">
+		<div class="pull-left reminder" >
+			<input type="text" id="subject" name="subject" class="form-control" placeholder="Subject"  ></input> <br /> 
+			<div class="input-append date form_datetime" >		
+    			<input type="text" id="date" name="date" class="form-control" size="16" value="" readonly  ></input>
+    			<span class="add-on"><i class="icon-th"></i></span>	
+			</div>		
+			<input type="text" id="receiver" name="receiver" class="form-control" placeholder="Receiver" readonly ></input> 
+			<p id="addContactMessage"></p>
+			<br/>
+			<select class="selectpicker" id="type" name="type" onchange="setReceiver(this)">
 				<option value="Email">Email</option>
 				<option value="Phone">Phone</option>
 				<option value="Skype">Skype</option>
 			</select> <br />
-			<button class="btn btn-primary" id="submit" type="submit" value="signup" style="margin-top: 15px;">Save</button>
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+			<div class="checkbox">
+  				<input type="checkbox" id="checkbox" value="" disabled/> <span>Delete</span>
+			</div> 
+			<button class="btn btn-primary reminder reset" id="reset" >Reset</button>
+			<button class="btn btn-primary reminder submit" id="submit" >Save</button>
 		</div>
 	</form>
-
-
-<!-- select date -->
-<script type="text/javascript">
-$(function() {
-  $( "#reminderDate" ).datepicker();
-});
-</script>
-<!-- select reminder type -->
-<script type="text/javascript">
-$(document).ready(function(e) {
-	$('.selectpicker').selectpicker();
-});
-</script>
-<script type="text/javascript">
-function setReceiver() {
-var output = document.getElementById("receiver");
-var type = document.getElementById("type");
-var selectedValue = type.options[type.selectedIndex].value;
-if (selectedValue == "Email") {
-	output.value = "${user.email}";
-} else if (selectedValue == "Phone") {
-	output.value = "${user.phone}";
-} else if (selectedValue == "Skype") {
-	output.value = "${user.skype}";
-	}
-};
-</script>
-<!-- set today as default/disable previous date -->
-<script type="text/javascript">
-var today = new Date();
-var dd = today.getDate();
-var mm = today.getMonth()+1; //January is 0!
-var yyyy = today.getFullYear();
-if(dd<10){
-    dd='0'+dd;
-} 
-if(mm<10){
-    mm='0'+mm;
-} 
-var today = dd+'/'+mm+'/'+yyyy;
-$("#reminderDate").mask(today);
-$("#reminderDate").datepicker({
-    minDate: 0
-});
-$("#reminderDate").datepicker("option", "dateFormat", "dd/mm/yy");
-</script>
+	<script type="text/javascript">
+	function setReceiver() {
+		var output = document.getElementById("receiver");
+		var type = document.getElementById("type");
+		var selectedValue = type.options[type.selectedIndex].value;
+		console.log("selected value: ", "${user.email}");
+		if (selectedValue == "Email") {
+			output.value = "${user.email}";
+			hideMessage();
+		} else if (selectedValue == "Phone") {
+			output.value = "${user.phone}";
+			hideMessage();
+		} else if (selectedValue == "Skype") {
+			output.value = "${user.skype}";
+			isSkypeContactAdded(output.value);
+		}
+	};
+	</script>
 </body>
 </html>
+<%@include file="footer.jsp"%>

@@ -1,11 +1,11 @@
 <%@include file="header.jsp"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <title>Don't forget service</title>
 </head>
 <body>
-	<div class="pull-left" style="padding-left: 25px; ">
+	<div class="pull-left" style="padding-left: 30px; ">
 		It's happened to all of us. You're in the middle of a task when a
 		thought in the back of your mind begins to nag at you. <br /> You
 		were supposed to take care of something important but you just can't

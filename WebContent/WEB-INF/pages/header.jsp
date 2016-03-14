@@ -8,24 +8,27 @@
 <html>
 <head>
 <!-- main design -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/app/resources/css/bootstrap.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/app/resources/css/custom.css">
+<link rel="icon" href="./resources/img/favicon.ico" type="image/x-icon"/>
+<link href='https://fonts.googleapis.com/css?family=Arvo' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="./resources/css/bootstrap.css">
+<link rel="stylesheet" href="./resources/css/user-form.css">
 <!-- user validation -->
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/app/resources/js/validate/user.validation.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/app/resources/js/validate/jquery.validate.min.js"></script>
+<script type="text/javascript" src="./resources/js/user.validation.js"></script>
+<script type="text/javascript" src="./resources/js/jquery.validate.min.js"></script>
 <!-- mask -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/app/resources/js/jquery.maskedinput.js"></script>
+<script type="text/javascript" src="./resources/js/jquery.maskedinput.js"></script>
+<sec:csrfMetaTags/>
 </head>
 <body>
 	<nav class="navbar navbar-default" data-role="navigation">
 	<div class="navbar-header">
-		<a href="./index.html"><img alt="image" src="${pageContext.request.contextPath}/app/resources/img/reminder-card.png" /></a>
+		<a href="./index.html"><img alt="image" src="./resources/img/reminder-card.png" /></a>
 	</div>
 
 	<!-- Collect the nav links, forms, and other content for toggling -->
 	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-		<ul class="nav navbar-nav" style="font-size: 1.3em; margin-top: 15px; margin-left: 40px;">
+		<ul class="nav navbar-nav">
 			<li><a href="./index.html"><span class="badge pull-right"></span>
 					Home</a></li>
 			<li><a href="./profile.html"><span class="badge pull-right"></span>
