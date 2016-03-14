@@ -65,7 +65,7 @@
 						<configuration>
 							<tasks>
 								<ftp action="send" server="${ftp.host}" remotedir="${ftp.remotedir}"
-									userid="${ftp.userid}" password="${ftp.password}" depends="${ftp.depends}"
+									userId="${ftp.userId}" password="${ftp.password}" depends="${ftp.depends}"
 									verbose="${ftp.verbose}">
 									<fileset dir="${project.build.directory}">
 										<include name="${project.build.finalName}.${project.packaging}" />
@@ -110,9 +110,9 @@
 			<version>4.1.8.Final</version>
 		</dependency>
 		<dependency>
-			<groupId>javax.mail</groupId>
+		<groupId>javax.mail</groupId>
 			<artifactId>mail</artifactId>
-			<version>1.4.4</version>
+			<version>1.5.0-b01</version>
 		</dependency>
 		<dependency>
 			<groupId>log4j</groupId>
@@ -184,11 +184,21 @@
 			<artifactId>gson</artifactId>
 			<version>2.4</version>
 		</dependency>
+		<dependency>
+			<groupId>com.github.taksan</groupId>
+			<artifactId>skype-java-api</artifactId>
+			<version>1.7</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+			<version>3.2.1</version>
+      </dependency>
 	</dependencies>
 	<properties>
 		<ftp.host>185.65.246.6</ftp.host>
 		<ftp.remotedir>/</ftp.remotedir>
-		<ftp.userid>kernel32</ftp.userid>
+		<ftp.userId>kernel32</ftp.userId>
 		<ftp.password>v0qV0nsktr</ftp.password>
 		<ftp.depends>yes</ftp.depends>
 		<ftp.verbose>no</ftp.verbose>
