@@ -6,26 +6,23 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import web.app.dao.UserDAO;
-import web.app.entities.Role;
 import web.app.entities.UserRole;
-import web.app.entities.Users;
 
 @Repository
 public class UserRoleDAO {
 
-	private static final Logger LOG = Logger.getLogger(UserRoleDAO.class);
+	private static Logger log = Logger.getLogger("file");
 
 	@PersistenceContext
 	EntityManager entityManager;
 
 	public UserRoleDAO() {
-		LOG.info("default constr UserRolesDAO");
+		log.info("UserRoleDAO: default constr UserRolesDAO");
 	}
 
 	@Transactional
-	public void setUserRole(UserRole u) {
-		entityManager.persist(u);
-		LOG.info("UserRolesDAO: entity manager binds roleID and userID");
+	public void setUserRole(UserRole entity) {
+		entityManager.persist(entity);
+		log.info("UserRolesDAO: entity manager binds roleId and userId");
 	}
 }
