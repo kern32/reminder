@@ -1,5 +1,7 @@
 package web.app.service;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,24 +10,24 @@ import web.app.dao.ReminderDAO;
 import web.app.dao.UserDAO;
 import web.app.entities.Reminder;
 
-@Service(value = "ReminderService")
+@Service
 public class ReminderService {
 
 	private static ReminderService instance = null;
-	private static final Logger LOG = Logger.getLogger(ReminderService.class);
+	private static Logger log = Logger.getLogger("file");
 	
 	@Autowired
-	private ReminderDAO reminderDao;
+	private ReminderDAO reminderDAO;
 	
 	@Autowired
-	private UserDAO userDao;
+	private UserDAO userDAO;
 
 	public ReminderService() {
-		LOG.info("default constr ReminderService");
+		log.info("UserRoleService: default constr");
 	}
 
 	public static ReminderService getInstance() {
-		LOG.info("singleton ReminderService getInstance");
+		log.info("UserRoleService: singleton get instance");
 		if (instance == null) {
 			synchronized (ReminderService.class) {
 				if (instance == null) {
@@ -36,23 +38,28 @@ public class ReminderService {
 		return instance;
 	}
 	
-	public void addReminder(Reminder r){
-		LOG.info("UserService: adding reminder");
-		reminderDao.addReminder(r);
+	public void addReminder(Reminder entity){
+		log.info("UserService: add reminder");
+		reminderDAO.addReminder(entity);
 	}
 	
-	public Reminder findReminder(String id){
-		LOG.info("UserService: finding reminder");
-		return reminderDao.findReminderById(id);
+	public void updateReminder(Reminder entity){
+		log.info("UserService: update reminder");
+		reminderDAO.updateReminder(entity);
 	}
 	
-	public void updateReminder(Reminder r){
-		LOG.info("UserService: updating reminder");
-		reminderDao.updateReminder(r);
+	public void deleteReminder(Reminder entity){
+		log.info("UserService: delete reminder");
+		reminderDAO.deleteReminder(entity);
 	}
 	
-	public void deleteReminder(Reminder r){
-		LOG.info("UserService: deleting reminder");
-		reminderDao.deleteReminder(r);
+	public Reminder findReminder(int id){
+		log.info("UserService: finding reminder by id");
+		return reminderDAO.findReminderById(id);
+	}
+	
+	public List<Reminder> findReminderByUserId(int userId, int firstResult, int maxResults){
+		log.info("UserService: finding reminder by user id");
+		return reminderDAO.findReminderByUserId(userId, firstResult, maxResults);
 	}
 }

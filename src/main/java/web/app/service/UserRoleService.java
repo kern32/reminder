@@ -4,27 +4,24 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import web.app.dao.ReminderDAO;
-import web.app.dao.UserDAO;
 import web.app.dao.UserRoleDAO;
-import web.app.entities.Reminder;
 import web.app.entities.UserRole;
 
 @Service
 public class UserRoleService {
 
 	private static UserRoleService instance = null;
-	private static final Logger LOG = Logger.getLogger(UserRoleService.class);
+	private static Logger log = Logger.getLogger("file");
 	
 	@Autowired
-	private UserRoleDAO userRoleDao;
+	private UserRoleDAO userRoleDAO;
 	
 	public UserRoleService() {
-		LOG.info("default constr UserRoleService");
+		log.info("UserRoleService: default constr");
 	}
 
 	public static UserRoleService getInstance() {
-		LOG.info("singleton UserRoleService getInstance");
+		log.info("UserRoleService: singleton get instance");
 		if (instance == null) {
 			synchronized (UserRoleService.class) {
 				if (instance == null) {
@@ -35,8 +32,8 @@ public class UserRoleService {
 		return instance;
 	}
 	
-	public void setRole(UserRole u){
-		LOG.info("UserRoleService: setting role for user");
-		userRoleDao.setUserRole(u);
+	public void setRole(UserRole entity){
+		log.info("UserRoleService: set role for user");
+		userRoleDAO.setUserRole(entity);
 	}
 }
