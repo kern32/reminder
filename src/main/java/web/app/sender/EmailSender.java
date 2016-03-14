@@ -13,118 +13,94 @@ import javax.mail.internet.MimeMessage;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 
-import web.app.configuration.Generator;
-import web.app.controllers.UserController;
+import web.app.entities.Reminder;
 import web.app.entities.Users;
 import web.app.service.UserService;
 
+@Configuration
+@PropertySource("classpath:../application-config.properties")
 public class EmailSender extends Sender {
 
-	private static final Logger LOG = Logger.getLogger(UserController.class);
-	private static Properties props;
-	private static Session session;
-
+	private static Logger log = Logger.getLogger("file");
+	
+	private Properties props;
+	private Session session;
+	
 	@Autowired
-	private static UserService userService;
-
-	private static Session getSession() {
-		LOG.info("getting mail session");
-		return Session.getDefaultInstance(props, new javax.mail.Authenticator() {
+	private UserService userService;
+	
+	@Autowired
+    private Environment env;
+	
+	public EmailSender() {
+		this.props = getProperties();
+		this.session = getSession();
+	}
+	
+	private Session getSession() {
+		log.info("EmailSender: get mail session");
+		return Session.getInstance(props, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication("pswcode", "1111111@");
+				return new PasswordAuthentication(env.getProperty("email"), env.getProperty("password"));
 			}
 		});
 	}
 
-	private static Properties setProperties() {
-		LOG.info("setting mail properties");
+	private Properties getProperties() {
+		log.info("EmailSender: get mail properties");
 		props = new Properties();
-		props.put("mail.smtp.host", "smtp.gmail.com");
-		props.put("mail.smtp.socketFactory.port", "465");
-		props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-		props.put("mail.smtp.auth", "true");
-		props.put("mail.smtp.port", "465");
+		props.put("mail.smtp.auth", env.getProperty("mail.smtp.auth"));
+		props.put("mail.smtp.starttls.enable", env.getProperty("mail.smtp.starttls.enable"));
+		props.put("mail.smtp.host", env.getProperty("mail.smtp.host"));
+		props.put("mail.smtp.port", env.getProperty("mail.smtp.port"));
 		return props;
 	}
 
-	public static boolean registration(String name, String email, String psw) {
-		LOG.info("sending email registration");
-		if (session == null) {
-			props = setProperties();
-			session = getSession();
-		}
+	public boolean registration(Users entity) {
+		log.info("EmailSender: send registration message on email");
 		try {
 			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("pswcode@gmail.com"));
-			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
-			message.setSubject("Passcode");
-			message.setText("Dear, " + name + "\n\nYour password is " + psw);
+			message.setFrom(new InternetAddress(env.getProperty("email")));
+			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(entity.getEmail()));
+			message.setSubject(env.getProperty("mail.subject.registration"));
+			message.setText("Dear, " + entity.getUsername() + "\n\nYou were successfully registered");
 			Transport.send(message);
 		} catch (AddressException e) {
+			log.error("EmailSender: catch AddressException while sending registration message on email, full stack trace follows:", e);
 			e.printStackTrace();
 			return false;
 		} catch (MessagingException e) {
+			log.error("EmailSender: catch MessagingException while sending registration message on email, full stack trace follows:", e);
 			e.printStackTrace();
 			return false;
 		}
-		LOG.info("registration email is sent");
+		log.info("EmailSender: registration message was sent on email successfully");
 		return true;
 	}
 
-	public static boolean forgotPassword(String email) {
-		Users user = userService.findByEmail(email);
-
-		if (user == null) {
-			LOG.info("user not found");
-			return false;
-		}
-
-		if (session == null) {
-			LOG.info("mail session is null");
-			props = setProperties();
-			session = getSession();
-		}
-
+	public boolean send(Reminder entity) {
+		log.info("EmailSender: send remind message");
 		try {
 			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("pswcode@gmail.com"));
-			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
-			message.setSubject("Passcode");
-			message.setText("Dear, " + user.getName() + "\n\nYou successfully registered ");
+			message.setFrom(new InternetAddress(env.getProperty("email")));
+			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(entity.getReceiver()));
+			message.setSubject(entity.getSubject());
+			message.setText(entity.getMessage());
 			Transport.send(message);
 		} catch (AddressException e) {
+			log.error("EmailSender: catch AddressException while sending reminder message on email, full stack trace follows:", e);
 			e.printStackTrace();
 			return false;
 		} catch (MessagingException e) {
+			log.error("EmailSender: catch MessagingException while sending reminder message on email, full stack trace follows:", e);
 			e.printStackTrace();
 			return false;
 		}
-		LOG.info("message with forgot password is sent");
-		return true;
-	}
-
-	public boolean remind(String name, String email, String reminder) {
-		if (session == null) {
-			LOG.info("session is null");
-			props = setProperties();
-			session = getSession();
-		}
-		try {
-			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("pswcode@gmail.com"));
-			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
-			message.setSubject("Passcode");
-			message.setText("Dear, " + name + "You got bellow reminder \n\n\n" + reminder);
-			Transport.send(message);
-		} catch (AddressException e) {
-			e.printStackTrace();
-			return false;
-		} catch (MessagingException e) {
-			e.printStackTrace();
-			return false;
-		}
-		LOG.info("reminder is sent on email");
+		log.info("EmailSender: reminder was sent on email successfully");
 		return true;
 	}
 }
