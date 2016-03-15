@@ -20,8 +20,6 @@
 		<intercept-url pattern="/header.html**" access="hasRole('ROLE_USER')" />
 		<intercept-url pattern="/profile.html**" access="hasRole('ROLE_USER')" />
 		<intercept-url pattern="/messages.html**" access="hasRole('ROLE_USER')" />
-		<intercept-url pattern="/comment.html**" access="hasRole('ROLE_USER')" />
-		
 
 		<form-login login-page="/login.html" 
 		    default-target-url="/index.html"
