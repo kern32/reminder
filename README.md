@@ -1,7 +1,7 @@
 # reminder service
 
 Free reminder service, specify one-time or recurring events and automatically  reminds by via email, phone message or skype
-http://javax.in.ua/reminder/
+http://javac.in.ua/reminder/
 
 Used technologies/API/framework:
 - maven
