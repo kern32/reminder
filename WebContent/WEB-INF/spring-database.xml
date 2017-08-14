@@ -6,13 +6,12 @@
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://185.65.246.6:3306/reminder_db" />
-		<property name="username" value="kernel32" />
-		<property name="password" value="v0qV0nsktr" />
 		
-		<!--<property name="url" value="jdbc:mysql://localhost:3306/reminder_db" />
-		<property name="username" value="root" />
-		<property name="password" value="" />-->
-	</bean>
+		<!--put database link-->
+		<property name="url" value="jdbc:mysql://localhost:3306/reminder_db" />
 
+		<!--put db username-->
+		<property name="username" value="root" />
+		<property name="password" value="" />
+	</bean>
 </beans>
