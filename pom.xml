@@ -199,7 +199,7 @@
 		<ftp.host>185.65.246.6</ftp.host>
 		<ftp.remotedir>/</ftp.remotedir>
 		<ftp.userId>kernel32</ftp.userId>
-		<ftp.password>v0qV0nsktr</ftp.password>
+		<ftp.password>**********</ftp.password>
 		<ftp.depends>yes</ftp.depends>
 		<ftp.verbose>no</ftp.verbose>
 		<webxml.dir>WebContent/WEB-INF/web.xml</webxml.dir>
